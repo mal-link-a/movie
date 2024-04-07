@@ -2,7 +2,7 @@ export const debounce = <F extends (...args: any[]) => any>(
   func: F,
   waitFor: number,
 ) => {
-  let timeout;
+  let timeout: number | undefined;
 
   return (...args: Parameters<F>): Promise<ReturnType<F>> =>
     new Promise((resolve) => {
