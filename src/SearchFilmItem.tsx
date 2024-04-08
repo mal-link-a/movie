@@ -2,24 +2,7 @@ import { FC } from "react";
 
 import RatingStars from "./RatingStars.tsx";
 import poster_none from "./assets/poster_none.png";
-
-interface Movie {
-  adult: boolean;
-  backdrop_path?: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-  rating: number;
-}
+import { Movie } from "./options.ts";
 
 interface Genre {
   id: number;
@@ -28,15 +11,13 @@ interface Genre {
 interface SearchFilmItemProps {
   movie: Movie;
   genres: Genre[];
-  addRatingToMovie: (id?: number, rate?: number) => Promise<boolean>;
-  ratedNeedUpdate: (id?: number, rate?: number) => void;
+  addRatingToMovie: (movie: Movie, rate?: number) => Promise<boolean>;
 }
 
 const SearchFilmItem: FC<SearchFilmItemProps> = ({
   movie,
   genres,
   addRatingToMovie,
-  ratedNeedUpdate,
 }) => {
   //Жанры
 
@@ -70,9 +51,8 @@ const SearchFilmItem: FC<SearchFilmItemProps> = ({
         <p className="film_votes">Оценка: {movie.vote_average}</p>
         <p className="film_voteCount">Оценено {movie.vote_count} раз</p>
         <RatingStars
-          filmID={movie.id}
-          addRating={addRatingToMovie}
-          ratedNeedUpdate={ratedNeedUpdate}
+          film={movie}
+          addRatingToMovie={addRatingToMovie}
           rating={movie.rating}
         />
       </div>

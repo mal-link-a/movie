@@ -6,65 +6,12 @@ import FilmSearch from "./FilmSearch.tsx";
 import SearchFilmItem from "./SearchFilmItem.tsx";
 import { GenreContext } from "./GenreContext.tsx";
 import { debounce } from "./debounce.ts";
-
-interface Movie {
-  adult: boolean;
-  backdrop_path?: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-  rating: number;
-}
-
-const optionsSimple = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzc5MWIyNDMzOTE4MDgxZDIzODVlYTNjZDZjN2QzZCIsInN1YiI6IjY2MGQ1Yzk4YzhhNWFjMDE3YzdiMWY2OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ddzL15X347LRjn73d62_iGE40jE0S6QN0N7K9-EkahE",
-  },
-};
-
-function addRatingToMovie(id?: number, rate?: number): Promise<boolean> {
-  const session = sessionStorage.getItem("themoviedb_sessionID"); //sessionID тоже вывести в отдельный файл
-  const url = `https://api.themoviedb.org/3/movie/${id}/rating?guest_session_id=${session}`;
-  console.log("Пытаемся оценить фильм с id = " + id + " и url=" + url);
-  const options = {
-    method: "POST",
-    headers: {
-      accept: "application/json",
-      "Content-Type": "application/json;charset=utf-8",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzc5MWIyNDMzOTE4MDgxZDIzODVlYTNjZDZjN2QzZCIsInN1YiI6IjY2MGQ1Yzk4YzhhNWFjMDE3YzdiMWY2OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ddzL15X347LRjn73d62_iGE40jE0S6QN0N7K9-EkahE",
-    },
-    body: `{"value":${rate}}`,
-  };
-  return fetch(url, options)
-    .then((res) => res.json())
-    .then((json) => {
-      console.log("Успешная оценка!");
-      console.log(json);
-      return true;
-    })
-    .catch((err) => {
-      console.error("error with addRatingToMovie:" + err);
-      return false;
-    });
-}
+import { Movie, optionsGet } from "./options.ts";
 
 interface SearctFilmListProps {
-  ratedNeedUpdate: (id?: number, rate?: number) => void;
+  addRatingToMovie: (movie: Movie, rate?: number) => Promise<boolean>;
 }
-const SearchFilmList: FC<SearctFilmListProps> = ({ ratedNeedUpdate }) => {
+const SearchFilmList: FC<SearctFilmListProps> = ({ addRatingToMovie }) => {
   const search = useRef<string>("return"); //Поле поиска
   const [page, setPage] = useState<number>(1); //Страница поиска
   const maxPages = useRef<number>(10); //Максимум страниц на нынешний search
@@ -78,7 +25,7 @@ const SearchFilmList: FC<SearctFilmListProps> = ({ ratedNeedUpdate }) => {
       setPage(1);
     }
     const url = `https://api.themoviedb.org/3/search/movie?query=${str}&include_adult=false&language=en-US&page=${page}`;
-    fetch(url, optionsSimple)
+    fetch(url, optionsGet)
       .then((res) => {
         return res.json();
       })
@@ -137,7 +84,6 @@ const SearchFilmList: FC<SearctFilmListProps> = ({ ratedNeedUpdate }) => {
                     movie={movie}
                     genres={genres}
                     addRatingToMovie={addRatingToMovie}
-                    ratedNeedUpdate={ratedNeedUpdate}
                   />
                 </>
               ))}

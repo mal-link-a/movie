@@ -2,18 +2,17 @@ import { useState, useRef, useEffect, FC } from "react";
 
 import star_empty from "./assets/star_empty.svg";
 import star_full from "./assets/star_full.svg";
+import { Movie } from "./options.ts";
 
 // Звездочки для блока оценки фильма
 interface RatingStarsProps {
-  filmID: number;
-  addRating: (id: number, rate: number) => void;
-  ratedNeedUpdate: (id?: number, rate?: number) => void;
+  film: Movie;
+  addRatingToMovie: (movie: Movie, rate?: number) => Promise<boolean>;
   rating: number;
 }
 const RatingStars: FC<RatingStarsProps> = ({
-  filmID,
-  addRating,
-  ratedNeedUpdate,
+  film,
+  addRatingToMovie,
   rating,
 }) => {
   const [stars, setStars] = useState<number>(0); //Значение для отображения прямо вот сейчас вот
@@ -22,10 +21,10 @@ const RatingStars: FC<RatingStarsProps> = ({
     defaultStars.current = rating;
     setStars(rating);
   }, [rating]);
+
   function rate(rate: number) {
     defaultStars.current = rate;
-    addRating(filmID, rate);
-    ratedNeedUpdate(filmID, rate);
+    addRatingToMovie(film, rate);
   }
 
   //Создаём звезды

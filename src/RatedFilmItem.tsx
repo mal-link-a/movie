@@ -6,7 +6,7 @@ import RatingStars from "./RatingStars.tsx";
 
 interface RatedFilmItemProps {
   movie: Movie;
-  handleAddRating: (id: number, rate: number) => void;
+  addRatingToMovie: (movie: Movie, rate?: number) => Promise<boolean>;
 }
 
 function rateClass(rate: number) {
@@ -16,7 +16,7 @@ function rateClass(rate: number) {
   return "ratingCol3";
 }
 
-const RatedFilmItem: FC<RatedFilmItemProps> = ({ movie, handleAddRating }) => {
+const RatedFilmItem: FC<RatedFilmItemProps> = ({ movie, addRatingToMovie }) => {
   const logoPath: string =
     "https://image.tmdb.org/t/p/w300_and_h450_bestv2/" + movie.poster_path;
   return (
@@ -29,9 +29,8 @@ const RatedFilmItem: FC<RatedFilmItemProps> = ({ movie, handleAddRating }) => {
         ></img>
         <h2 className="rated__item__div_name"> {movie.title}</h2>
         <RatingStars
-          filmID={movie.id}
-          addRating={handleAddRating}
-          ratedNeedUpdate={() => {}}
+          film={movie}
+          addRatingToMovie={addRatingToMovie}
           rating={movie.rating}
         />
       </div>
