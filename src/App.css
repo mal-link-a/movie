@@ -1,0 +1,189 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+.listItem {
+  background-color: rgb(206, 255, 194);
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.base {
+  min-width: 768;
+  min-height: auto;
+}
+.search__box {
+  margin-bottom: 10px;
+}
+.search__box__buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.onLoadSpinner {
+  margin-top: 150px;
+  position: static;
+}
+.filmMain {
+  display: grid;
+  grid-template-areas: "search rated";
+  grid-template-columns: 960px 220px;
+  gap: 20px;
+  max-width: 1200px
+}
+
+.filmList {
+  list-style-type: none;
+  grid-area: search;
+  margin: 0;
+  padding: 0;
+}
+.listItem {
+  margin-bottom: 5px;
+  padding: 20px;
+  box-shadow: 0px 0px 19px 0px rgba(173,173,173,0.5);
+}
+
+.film {  
+  height: 450px;
+  display: grid;
+  justify-items: right;
+  grid-template-columns: 300px 1fr 1fr 1fr 1fr;
+  grid-template-rows: 40px 40px 40px 40px 10fr 1fr 1fr;
+  grid-template-areas: 
+  "poster name name name name"
+  "poster orignalName orignalName orignalName orignalName"
+  "poster . . adult releaseDate"
+  "poster genres genres genres genres"
+  "poster description description description description"
+  "poster rateStars rateStars rateStars rateStars"
+  "poster popularity . votes voteCount";
+}
+.film_poster {
+  grid-area: poster;
+}
+.film_name {
+  grid-area: name;
+}
+.film_original-name {
+  grid-area: orignalName;
+}
+.film_releaseDate {
+  grid-area: releaseDate;
+}
+.film_genres {
+  grid-area: genres;
+}
+.film_adult {
+  grid-area: adult;
+}
+.film_description {
+  grid-area: description;
+  text-align: right;
+}
+.film_popularity {
+  grid-area: popularity;
+}
+.film_votes {
+  grid-area: votes;
+}
+.film_voteCount {
+  grid-area: voteCount;
+}
+.rateStars {
+  grid-area: rateStars;
+}
+.rateStars_star {
+  width: 40px;
+  height: 40px;
+}
+
+.rated {
+  grid-area: rated;  
+  margin: 0;
+  padding: 0;
+}
+.rated__item {
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+.rated__item__div { 
+  box-shadow: 0px 0px 19px 0px rgba(173,173,173,0.5);
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background-color: rgb(193, 186, 255);
+  width: 100%;
+  box-sizing: border-box;
+}
+.rated__item__div_poster {
+  height: 300px;
+  width: 200px;
+}
+.rated__item__div_name {
+  margin: 5px;
+}
+.rated__item__div .rateStars_star {
+  height: 19px;
+  width: 19px;
+}
+.ratingCol0 {
+  background-color: #E90000;
+}
+.ratingCol1 {
+  background-color: #E97E00;
+}
+.ratingCol2 {
+  background-color: #E9D100;
+}
+.ratingCol3 {
+  background-color: #66E900;
+}
+
+
+.rated {
+  border: 1px solid rgb(185, 223, 223);
+  margin-top: 250px;
+}
