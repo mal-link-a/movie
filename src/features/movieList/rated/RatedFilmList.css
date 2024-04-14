@@ -1,0 +1,7 @@
+.rated {
+    grid-area: rated;  
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgb(185, 223, 223);
+    margin-top: 250px;
+  }

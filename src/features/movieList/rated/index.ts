@@ -1,0 +1,1 @@
+export * from "./RatedFilmList.tsx";

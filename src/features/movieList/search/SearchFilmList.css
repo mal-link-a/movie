@@ -1,0 +1,6 @@
+.searchList__ul {
+    list-style-type: none;
+    grid-area: search;
+    margin: 0;
+    padding: 0;
+  }
