@@ -20,7 +20,10 @@ function rateClass(rate: number) {
   return "ratingCol3";
 }
 
-const RatedFilmItem: FC<RatedFilmItemProps> = ({ movie, addRatingToMovie }) => {
+export const RatedFilmItem: FC<RatedFilmItemProps> = ({
+  movie,
+  addRatingToMovie,
+}) => {
   //Обработчик оценки в компоненте оценки
   const addRating = (rate: number) => {
     addRatingToMovie(movie, rate);
@@ -48,5 +51,3 @@ const RatedFilmItem: FC<RatedFilmItemProps> = ({ movie, addRatingToMovie }) => {
     </li>
   );
 };
-
-export default RatedFilmItem;

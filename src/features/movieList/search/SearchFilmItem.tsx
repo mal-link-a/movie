@@ -14,7 +14,7 @@ interface SearchFilmItemProps {
   addRatingToMovie: (movie: Movie, rate: number) => void;
 }
 
-const SearchFilmItem: FC<SearchFilmItemProps> = ({
+export const SearchFilmItem: FC<SearchFilmItemProps> = ({
   movie,
   genres,
   addRatingToMovie,
@@ -47,14 +47,14 @@ const SearchFilmItem: FC<SearchFilmItemProps> = ({
           alt="logo"
         ></img>
         <h2 className="film_name"> {movie.title}</h2>
-        <p className="film_original-name">{`${movie.original_language}: ${movie.original_title}`}</p>
-        <p className="film_releaseDate">{movie.release_date}</p>
-        <p className="film_genres">{getGenresByID()}</p>
-        <p className="film_adult">{movie.adult ? "18+" : ""}</p>
-        <p className="film_description">Описание: {movie.overview}</p>
-        <p className="film_popularity">Популярность: {movie.popularity}</p>
-        <p className="film_votes">Оценка: {movie.vote_average}</p>
-        <p className="film_voteCount">Оценено {movie.vote_count} раз</p>
+        <div className="film_original-name">{`${movie.original_language}: ${movie.original_title}`}</div>
+        <div className="film_releaseDate">{movie.release_date}</div>
+        <div className="film_genres">{getGenresByID()}</div>
+        <div className="film_adult">{movie.adult ? "18+" : ""}</div>
+        <div className="film_description">Описание: {movie.overview}</div>
+        <div className="film_popularity">Популярность: {movie.popularity}</div>
+        <div className="film_votes">Оценка: {movie.vote_average}</div>
+        <div className="film_voteCount">Оценено {movie.vote_count} раз</div>
         <RatingStars
           func={addRating}
           value={movie.rating}
@@ -65,5 +65,3 @@ const SearchFilmItem: FC<SearchFilmItemProps> = ({
     </li>
   );
 };
-
-export default SearchFilmItem;

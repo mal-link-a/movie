@@ -3,7 +3,7 @@ import { useState, useEffect, FC } from "react";
 import { Movie } from "../../../types";
 import { getRatedMovies } from "../../../api/getRatedMovies.ts";
 
-import RatedFilmItem from "./RatedFilmItem.tsx";
+import { RatedFilmItem } from "./RatedFilmItem.tsx";
 
 import "./RatedFilmList.css";
 

@@ -1,1 +1,1 @@
-export * from "./RatedFilmList.tsx";
+export { RatedFilmList } from "./RatedFilmList.tsx";

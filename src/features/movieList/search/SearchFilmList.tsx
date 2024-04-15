@@ -7,7 +7,7 @@ import { Movie, SearchListType } from "../../../types";
 import { searchMovie } from "../../../api/searchMovie.ts";
 import { SearchBox } from "../../../shared/SearchBox.tsx";
 
-import SearchFilmItem from "./SearchFilmItem.tsx";
+import { SearchFilmItem } from "./SearchFilmItem.tsx";
 
 interface SearctFilmListProps {
   addRatingToMovie: (movie: Movie, rate: number) => void;
